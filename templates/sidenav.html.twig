@@ -1,0 +1,31 @@
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-grid"> 
+            <div class="dropdown">
+                <a href="javascript:;" class="btn btn-primary dropdown-toggle"  type="button" data-bs-toggle="dropdown" aria-expanded="false">+ Add</a>
+                  <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('app_folder_new') }}">Folder</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_file_new') }}">File</a></li>
+                    </ul>
+            </div>
+        </div>
+        <h5 class="my-3">My Drive</h5>
+        <div class="fm-menu">
+            <div class="list-group list-group-flush">
+                <a href="{{ path('app_dashboard') }}" class="list-group-item py-1"><i class="bx bx-devices me-2"></i><span>Dashboard</span></a>
+                <a href="{{ path('app_file_index') }}" class="list-group-item py-1"><i class="bx bx-file me-2"></i> <span>All Files</span></a>
+                
+                <a href="{{ path('app_file_recent') }}" class="list-group-item py-1"><i class="bx bx-analyse me-2"></i><span>Recents</span></a>
+                <a href="javascript:;" class="list-group-item py-1"><i class="bx bx-plug me-2"></i><span>Important</span></a>
+                <a href="{{ path('app_file_deleted') }}" class="list-group-item py-1"><i class="bx bx-trash-alt me-2"></i><span>Deleted Files</span></a>
+                <a href="{{ path('app_file_uploaded_image') }}" class="list-group-item py-1"><i class="bx bx-image me-2"></i><span>Images</span></a>
+                <a href="{{ path('app_file_uploaded_video') }}" class="list-group-item py-1"><i class="bx bx-video me-2"></i><span>Videos</span></a>
+            
+                
+                <a href="javascript:;" class="list-group-item py-1"><i class="bx bx-music me-2"></i><span>Audio</span></a>
+                <a href="{{ path('app_file_uploaded_zip') }}" class="list-group-item py-1"><i class="bx bx-beer me-2"></i><span>Zip Files</span></a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -16,6 +16,19 @@ class DashboardRepository extends ServiceEntityRepository
         parent::__construct($registry, Dashboard::class);
     }
 
+    public function findRecentFiles(): array
+        {
+          $qb=$this->createQueryBuilder('f');
+          return $qb
+                ->andWhere($qb->expr()->isNull('f.deletedAt'))
+                ->orderBy('f.date', 'DESC') 
+                ->setMaxResults(10)  
+                ->getQuery()
+                ->getResult()
+              ;
+        }
+
+
     //    /**
     //     * @return Dashboard[] Returns an array of Dashboard objects
     //     */

@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.container {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.welcome-section {
+    width: 50%;
+    background-image: url("/img/bibl.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+    transition: all 0.6s ease;
+}
+
+.welcome-section h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.form-box {
+    width: 50%;
+    background: #fff;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+    transition: all 0.6s ease;
+}
+
+.form {
+    width: 100%;
+    display: none;
+}
+
+.form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #aaa;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.switch-link {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.switch-link a {
+    color: #000;
+    text-decoration: underline;
+}
+
+.login-form {
+    display: block;
+}
+
+.container.active .welcome-section {
+    transform: translateX(100%);
+}
+
+.container.active .form-box {
+    transform: translateX(-100%);
+}
+
+.container.active .login-form {
+    display: none;
+}
+
+.container.active .signup-form {
+    display: block;
+}

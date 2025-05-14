@@ -1,0 +1,57 @@
+{% extends '/dashboard/layout.html.twig' %}
+
+{% block title %}Login / Signup{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="part.css">
+</head>
+
+{% block container %}
+<div class="container mt-5">
+ 
+     <div class="container">
+        <div class="form-container">
+            <div class="welcome-section">
+                <div><img src="BC-PME.jpg"   alt="BC-PME"></div>
+                <h1>BIENVENUE!</h1>
+                <p>sur notre GED  </p>
+            </div>
+            <div class="form-box">
+                <div class="form login-form">
+                    <h2>Login</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+                   
+
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <form method="post">
+                <div class="mb-3">
+                    <label for="inputEmail" class="form-label">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label">Mot de passe</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" required>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <button class="btn btn-primary w-100" type="submit">Connexion</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="part.js"></script>
+{% endblock %}

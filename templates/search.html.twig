@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+
+<form method="get" action="{{ path('app_file_search') }}" class="fm-search">
+{{ form_start(form, {'method': 'get', 'attr': {'class': 'fm-search', 'action': path('app_file_search')}}) }}
+    <div class="mb-0">
+        <div class="input-group input-group-lg">
+            <span class="input-group-text bg-transparent"><i class="fa fa-search"></i></span>
+            {{ form_widget(form.keyword, {'attr': {'class': 'form-control', 'placeholder': 'Search the files'}}) }}
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+    {{ form_end(form) }}
+            
+
+            <div class="search-results mt-4">
+                {% if files is defined and files is not empty %}
+                    <h3>Search Results ({{ files|length }})</h3>
+                    <div class="list-group">
+
+                        {% for file in files %}
+                            <div class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{ file.name }}</h5>
+                                    <small>{{ file.createdAt|date("d/m/Y H:i") }}</small>
+                                </div>
+
+                                {% if file.description %}
+                                    <p class="mb-1">{{ file.description }}</p>
+                                {% endif %}
+
+                                {% if file.path %}
+                                    <small class="text-muted">Path: {{ file.path }}</small>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                {% elseif form.vars.submitted %}
+                    <div class="alert alert-info">
+                        <p class="mb-0">No files found for this search query. Please try different keywords.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+{% endblock %}
+
+

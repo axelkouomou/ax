@@ -29,7 +29,9 @@ services:
             - { name: doctrine.orm.entity_listener, event: preUpdate }
 
 parameters: 
-    uploads_directory: '%kernel.project_dir%/public/uploads'
+    uploads_directory: '%kernel.project_dir%/public/uploads/'
+    
+    
    
 
 

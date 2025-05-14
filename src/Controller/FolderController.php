@@ -7,11 +7,12 @@ use App\Form\FolderType;
 use App\Repository\FolderRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\MakerBundle\Security\Model\Authenticator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/folder')]
+#[Route('/dashboard/folder')]
 final class FolderController extends AbstractController
 {
     #[Route(name: 'app_folder_index', methods: ['GET'])]
@@ -33,6 +34,8 @@ final class FolderController extends AbstractController
             $entityManager->persist($folder);
             $entityManager->flush();
 
+           
+             
             return $this->redirectToRoute('app_folder_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -42,15 +45,22 @@ final class FolderController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_folder_show', methods: ['GET'])]
-    public function show(Folder $folder): Response
+   
+    #[Route('/folder/{id}', name: 'app_folder_show', methods: ['GET'])]
+    public function show( Folder $folder, FolderRepository $folderRepository): Response
     {
-        return $this->render('folder/show.html.twig', [
-            'folder' => $folder,
-        ]);
+
+            // Vérifie si le dossier existe, et récupère les fichiers
+            $files = $folder->getFiles();
+            
+            return $this->render('folder/show.html.twig', [
+                'folder' => $folder,
+                'files' => $files,
+            ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_folder_edit', methods: ['GET', 'POST'])]
+
+    #[Route('/edit/{id}', name: 'app_folder_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Folder $folder, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(FolderType::class, $folder);
@@ -68,7 +78,7 @@ final class FolderController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_folder_delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'app_folder_delete', methods: ['POST'])]
     public function delete(Request $request, Folder $folder, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$folder->getId(), $request->getPayload()->getString('_token'))) {

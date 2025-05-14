@@ -1,11 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends '/dashboard/layout.html.twig' %}
 
 {% block title %}New Folder{% endblock %}
 
-{% block body %}
+{% block container %}
     <h1>Create new Folder</h1>
 
     {{ include('folder/_form.html.twig') }}
 
-    <a href="{{ path('app_folder_index') }}">back to list</a>
+    <a class="btn btn-secondary" href="{{ path('app_folder_index') }}">back to list</a>
 {% endblock %}
+
+

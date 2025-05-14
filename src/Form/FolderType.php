@@ -16,7 +16,7 @@ class FolderType extends AbstractType
             ->add('name')
             ->add('parent', EntityType::class, [
                 'class' => Folder::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
         ;
     }

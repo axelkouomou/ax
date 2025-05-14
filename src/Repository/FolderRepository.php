@@ -16,6 +16,19 @@ class FolderRepository extends ServiceEntityRepository
         parent::__construct($registry, Folder::class);
     }
 
+    public function findFilesInFolder(): array
+    {
+        $qb=$this->createQueryBuilder('f');
+        return $qb
+            ->andWhere($qb->expr()->isNull('f.filesInFolder'))
+            ->orderBy('f.date', 'ASC') 
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+
     //    /**
     //     * @return Folder[] Returns an array of Folder objects
     //     */

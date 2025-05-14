@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\File;
+use App\Form\TextType;
 use App\Entity\Folder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -18,6 +19,8 @@ class FileType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('keyword')
+               
             ->add('folder', EntityType::class, [
                 'class' => Folder::class,
                 'choice_label' => 'name'
@@ -30,15 +33,20 @@ class FileType extends AbstractType
                 'required' => true,
                 'constraints' => [
                     new Doc([
-                        'maxSize' => '10M', // 🔹 Limite fixée ici (10 mégaoctets)
+                        'maxSize' => '500M', // 🔹 Limite fixée ici (10 mégaoctets)
                         'maxSizeMessage' => 'Le fichier est trop volumineux ({{ size }} {{ suffix }}). La taille maximale autorisée est de {{ limit }} {{ suffix }}.',
                         'mimeTypes' => [
                             'application/pdf',
-                            'application/docx',
+                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+                            'application/msword',
+                            'application/zip',
                             'image/jpeg',
-                            'image/png'
+                            'image/png',
+                            'video/webm',
+                            'video/mp4',
+                            'video/ogg',
                         ],
-                        'mimeTypesMessage' => 'Format de fichier non autorisé.',
+                        'mimeTypesMessage' => 'Formats autorisés : PDF, DOCX, JPG, PNG, ZIP, WEBM, MP4, OGG',
                     ]),
                 ],
             ]);

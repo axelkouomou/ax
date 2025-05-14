@@ -30,6 +30,12 @@ class File
     #[ORM\Column(type: 'string', length: 255)]
     private $filename;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?string $description = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $path = null;
+
     #[ORM\ManyToOne(inversedBy: 'files')]
     private ?Folder $folder = null;
 
@@ -59,6 +65,30 @@ class File
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPath(): ?string
+    {
+        return $this->path;
+    }
+
+    public function setPath(?string $path): static
+    {
+        $this->path = $path;
 
         return $this;
     }
